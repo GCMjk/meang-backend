@@ -3,21 +3,34 @@ import cors from 'cors';
 import compression from 'compression';
 import { createServer } from 'http';
 
-const app = express();
+import environments from './config/environments';
 
-app.use(cors());
+// setting environment variables (read)
+if(process.env.NODE_ENV !== 'production'){
+    const env = environments;
+    console.log(env);
+}
 
-app.use(compression());
+async function init() {
 
-app.get('/', (_, res) => {
-    res.send('API');
-});
+    const app = express();
 
-const httpServer = createServer(app);
+    app.use(cors());
+    app.use(compression());
 
-httpServer.listen(
-    {
-        port: 3000
-    },
-    () => console.log('http://localhost:3000 API')
-);
+    app.get('/', (_, res) => {
+        res.send('API');
+    });
+
+    const httpServer = createServer(app);
+    const PORT = process.env.PORT || 3000;
+
+    httpServer.listen(
+        {
+            port: PORT
+        },
+        () => console.log(`http://localhost:${PORT} API`)
+    );
+}
+
+init();

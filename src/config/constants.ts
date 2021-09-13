@@ -1,4 +1,4 @@
-import environment from "./environments";
+import environment from './environments';
 
 if(process.env.NODE_ENV !== 'production'){
     const env = environment;
