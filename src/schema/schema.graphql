@@ -1,0 +1,94 @@
+"definition of root types"
+type Query {
+    "Registered users in the database"
+    users: ResultUsers
+    "User Login"
+    login(email: String!, password: String!): ResultLogin
+    "Authenticate using the token"
+    me: ResultUser
+}
+
+type Mutation {
+    register(user: UserInput!): ResultUser
+}
+
+"Interface to specify required properties in responses"
+interface Result {
+    "Operation status"
+    status: Boolean!
+    "Operation message"
+    message: String!
+}
+
+type ResultUsers implements Result {
+    "Operation status"
+    status: Boolean!
+    "Operation message"
+    message: String!
+    "Registered users in the database"
+    users: [User!]!
+}
+
+type ResultUser implements Result {
+    "Operation status"
+    status: Boolean!
+    "Operation message"
+    message: String!
+    "User information"
+    user: User
+}
+
+type ResultLogin implements Result {
+    "Operation status"
+    status: Boolean!
+    "Operation message"
+    message: String!
+    "Token information of the logged in user"
+    token: String
+}
+
+"""
+    User information.
+    * Date of birth and registration in ISO format
+"""
+type User {
+    "Unique identifier"
+    id: ID!
+    "Username"
+    name: String!
+    "User last name"
+    lastname: String!
+    "Registration email"
+    email: String!
+    "Registration password"
+    password: String!
+    "registration date"
+    registerDate: String!
+    "Date of birth"
+    birthday: String!
+    "User permits"
+    role: Role!
+}
+
+"Entry to add user data in the registry"
+input UserInput {
+    "Unique identifier, this case is not mandatory"
+    id: ID
+    "Username"
+    name: String!
+    "User last name"
+    lastname: String!
+    "Registration email"
+    email: String!
+    "Registration password"
+    password: String!
+    "registration date"
+    birthday: String!
+    "User permits"
+    role: Role=CLIENT
+}
+
+enum Role {
+    CLIENT
+    ADMIN
+}
