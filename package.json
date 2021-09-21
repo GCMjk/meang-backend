@@ -1,6 +1,6 @@
 {
   "name": "meang-backend",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "backend base with node, tsc and graphQL API",
   "main": "build/server.js",
   "scripts": {
