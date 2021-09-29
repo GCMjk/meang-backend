@@ -1,0 +1,22 @@
+"""
+    User information.
+    * Date of birth and registration in ISO format
+"""
+type User {
+    "Unique identifier"
+    id: ID!
+    "Username"
+    name: String!
+    "User last name"
+    lastname: String!
+    "Registration email"
+    email: String!
+    "Registration password"
+    password: String!
+    "registration date"
+    registerDate: String!
+    "Date of birth"
+    birthday: String!
+    "User permits"
+    role: Role!
+}

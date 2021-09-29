@@ -1,0 +1,17 @@
+"Entry to add user data in the registry"
+input UserInput {
+    "Unique identifier, this case is not mandatory"
+    id: ID
+    "Username"
+    name: String!
+    "User last name"
+    lastname: String!
+    "Registration email"
+    email: String!
+    "Registration password"
+    password: String!
+    "registration date"
+    birthday: String!
+    "User permits"
+    role: Role=CLIENT
+}

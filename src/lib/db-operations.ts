@@ -1,0 +1,94 @@
+import { Db } from 'mongodb';
+
+/**
+ * Assign a new ID based on the previous registration
+ * @param database Database with which you work
+ * @param collection Collection to search for the last item
+ * @param sort How will be ordered { <property>: -1 }
+ * @returns ID for the new registered item
+ */
+export const assignDocumentId = async(
+    database: Db,
+    collection: string,
+    sort: object = { registerDate: -1 }
+) => {
+    const lastElement = await database
+        .collection(collection)
+        .find()
+        .limit(1)
+        .sort(sort)
+        .toArray();
+
+    if (lastElement.length === 0) {
+        return 1;
+    } 
+    
+    return lastElement[0].id + 1;
+
+};
+
+/**
+ * Filter item search
+ * @param database Database with which you work
+ * @param collection Collection to filter the item
+ * @param filter Filters object
+ * @returns Filtered element
+ */
+export const findOneElement = async(
+    database: Db,
+    collection: string,
+    filter: object
+) => {
+    return database
+        .collection(collection)
+        .findOne(filter);
+};
+
+/**
+ * Search for multiple items with filter
+ * @param database Database with which you work
+ * @param collection Collection where the search for elements is performed
+ * @param filter Filters object
+ * @returns Filtered items
+ */
+export const findElements = async (
+    database: Db,
+    collection: string,
+    filter: object = {}
+) => {
+    return await database.collection(collection).find(filter).toArray();
+};
+
+/**
+ * Insert an element
+ * @param database Database with which you work
+ * @param collection Collection where the insert is made
+ * @param document Document
+ * @returns Document inserted in collection
+ */
+export const insertOneElement = async (
+    database: Db,
+    collection: string,
+    document: object
+) => {
+    return await database
+        .collection(collection)
+        .insertOne(document);
+};
+
+/**
+ * Insert multiple items
+ * @param database Database with which you work
+ * @param collection Collection where the insert is made
+ * @param documents Array of documents
+ * @returns Documents inserted in the collection
+ */
+export const insertManyElements = async (
+    database: Db,
+    collection: string,
+    documents: Array<object>
+) => {
+    return await database
+        .collection(collection)
+        .insertMany(documents);
+};

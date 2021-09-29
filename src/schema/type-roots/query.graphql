@@ -1,0 +1,11 @@
+"definition of root types"
+type Query {
+    "Registered users in the database"
+    users: ResultUsers
+    "User Login"
+    login(email: String!, password: String!): ResultLogin
+    "Authenticate using the token"
+    me: ResultUser
+    "Mostrar lista de productos"
+    products: Boolean
+}
