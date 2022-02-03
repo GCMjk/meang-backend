@@ -20,10 +20,10 @@ export const assignDocumentId = async(
         .toArray();
 
     if (lastElement.length === 0) {
-        return 1;
+        return '1';
     } 
     
-    return lastElement[0].id + 1;
+    return String(+lastElement[0].id + 1);
 
 };
 
@@ -91,4 +91,42 @@ export const insertManyElements = async (
     return await database
         .collection(collection)
         .insertMany(documents);
+};
+
+/**
+ * Update an element
+ * @param database Database with which you work
+ * @param collection Collection where the update is made
+ * @param document Document
+ * @returns Document updated in collection
+ */
+export const updateOneElement = async (
+    database: Db,
+    collection: string,
+    filter: object,
+    updateObject: Object
+) => {
+    return await database
+        .collection(collection)
+        .updateOne(
+            filter,
+            { $set: updateObject }
+        );
+};
+
+/**
+ * Delete an element
+ * @param database Database with which you work
+ * @param collection Collection where the delete is made
+ * @param document Document
+ * @returns Document deleted in collection
+ */
+export const deleteOneElement = async (
+    database: Db,
+    collection: string,
+    filter: object = {}
+) => {
+    return await database
+        .collection(collection)
+        .deleteOne(filter);
 };

@@ -1,8 +1,0 @@
-type ResultUser implements Result {
-    "Operation status"
-    status: Boolean!
-    "Operation message"
-    message: String!
-    "User information"
-    user: User
-}

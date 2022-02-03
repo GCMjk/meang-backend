@@ -1,0 +1,6 @@
+"Object type to store category information"
+type Category implements Item {
+    id: ID!
+    name: String!
+    slug: String!
+}

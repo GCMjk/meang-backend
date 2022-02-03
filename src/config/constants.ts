@@ -7,7 +7,8 @@ if(process.env.NODE_ENV !== 'production'){
 export const SECRET_KEY = process.env.SECRET || 'BackendAPI_21';
 
 export enum COLLECTIONS {
-    USERS='users'
+    USERS='users',
+    CATEGORIES = 'categories'
 }
 
 export enum MESSAGES {

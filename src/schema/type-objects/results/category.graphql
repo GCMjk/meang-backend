@@ -1,0 +1,8 @@
+type ResultCategory implements Result {
+    "Operation status"
+    status: Boolean!
+    "Operation message"
+    message: String!
+    category: Category
+    categories: [Category!]
+} 

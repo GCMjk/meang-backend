@@ -1,3 +1,4 @@
+
 type ResultUsers implements Result {
     "Operation status"
     status: Boolean!
@@ -5,4 +6,13 @@ type ResultUsers implements Result {
     message: String!
     "Registered users in the database"
     users: [User!]!
+}
+
+type ResultUser implements Result {
+    "Operation status"
+    status: Boolean!
+    "Operation message"
+    message: String!
+    "User information"
+    user: User
 }

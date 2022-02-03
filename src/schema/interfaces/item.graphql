@@ -1,0 +1,6 @@
+"Basic item to define basic properties of the API elements"
+interface Item {
+    id: ID!
+    name: String!
+    slug: String!
+}
