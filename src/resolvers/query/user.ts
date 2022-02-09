@@ -5,8 +5,10 @@ const resolversUserQuery: IResolvers = {
     Query: {
 
         // User collection list
-        async users(_, __, context) {
-            return new UsersService(_, __, context).items();
+        async users(_, { page, itemsPage }, context) {
+            return new UsersService(_, {
+                pagination: { page, itemsPage }
+            }, context).items();
         },
 
         // Login with email and encrypted password

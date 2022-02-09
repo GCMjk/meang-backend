@@ -15,8 +15,10 @@ class CategoriesService extends ResolversOperationsService {
 
     // Show all categories
     async items() {
-        const result = await this.list(this.collection, 'categorías');
-        return { status: result.status, message: result.message, categories: result.items };
+        const page = this.getVariables().pagination?.page;
+        const itemsPage = this.getVariables().pagination?.itemsPage;
+        const result = await this.list(this.collection, 'categorías', page, itemsPage);
+        return { info: result.info, status: result.status, message: result.message, categories: result.items };
     }
 
     // Show a category

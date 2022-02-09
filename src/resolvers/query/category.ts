@@ -1,5 +1,5 @@
-import { IResolvers } from "@graphql-tools/utils";
-import CategoriesService from "../../services/categories.service";
+import { IResolvers } from '@graphql-tools/utils';
+import CategoriesService from '../../services/categories.service';
 
 const resolversCategoryQuery: IResolvers = {
     Query: {
@@ -10,8 +10,10 @@ const resolversCategoryQuery: IResolvers = {
         },
 
         // Show categories
-        async categories(_, __, { db }) {
-            return new CategoriesService(_, __, { db }).items();
+        async categories(_, variables, { db }) {
+            return new CategoriesService(_, {
+                pagination: variables
+            }, { db }).items();
         }
         
     }

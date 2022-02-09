@@ -1,5 +1,7 @@
 
 type ResultUsers implements Result {
+    "Show paging system information"
+    info: ResultInfo
     "Operation status"
     status: Boolean!
     "Operation message"

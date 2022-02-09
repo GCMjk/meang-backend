@@ -1,7 +1,7 @@
 "definition of root types"
 type Query {
     "Registered users in the database"
-    users: ResultUsers
+    users(page: Int = 1, items: Int = 20): ResultUsers
     "User Login"
     login(email: String!, password: String!): ResultLogin
     "Authenticate using the token"
@@ -9,5 +9,5 @@ type Query {
     "Item of the selected category"
     category(id: ID!): ResultCategory
     "Show list of categories"
-    categories: ResultCategory
+    categories(page: Int = 1, items: Int = 20): ResultCategory
 }
